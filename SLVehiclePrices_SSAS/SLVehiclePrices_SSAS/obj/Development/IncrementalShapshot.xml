@@ -1,0 +1,96 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>SLVehiclePrices_SSAS</Database>
+    <Server>DESKTOP-5ICRANC\SQLSERVER1</Server>
+    <ConnectionString>Data Source=DESKTOP-5ICRANC\SQLSERVER1;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>MXGMiLt2PhuogUvkDtt4a9+4xu4=5/17/2022 5:09:29 PM5/17/2022 9:06:06 AM</TimeStamp>
+        <ID>
+          <String>DS_SL Vehicle Prices DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>besxKjLLryL7qryCrPbkprne21o=5/17/2022 9:58:56 AM5/17/2022 9:27:46 AM</TimeStamp>
+        <ID>
+          <String>DSV_SL Vehicle Prices DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>JL14X1Ju8tZQsBiKRUZ0RjaZ1XY=5/17/2022 4:55:34 PM5/17/2022 9:58:55 AM</TimeStamp>
+        <ID>
+          <String>Dim Date</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>/peX1YOlx6lczlog1QYnn8PQz+U=5/17/2022 10:28:35 AM5/17/2022 9:58:55 AM</TimeStamp>
+        <ID>
+          <String>Dim Buyer</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>kYmtNJr+oTJ3loLouv9xQFTnA3U=5/17/2022 10:28:35 AM5/17/2022 9:58:55 AM</TimeStamp>
+        <ID>
+          <String>Dim Model</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>o4enmhbfeNYYYR+gKVhnNEuhCyc=5/17/2022 10:28:35 AM5/17/2022 9:58:55 AM</TimeStamp>
+        <ID>
+          <String>Dim Title</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>rzmeEE+ExzFs5JQcmB9bbvAU5Dg=5/17/2022 10:28:35 AM5/17/2022 9:58:55 AM</TimeStamp>
+        <ID>
+          <String>Dim Seller</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>Ju4K5Srsx/RVNmKP/PuonALkLQ4=5/17/2022 9:56:41 PM5/17/2022 9:58:55 AMB2yQ3CDnICgd8xj0G5Gs0gokjTg=5/17/2022 9:58:56 AM5/17/2022 9:58:55 AM</TimeStamp>
+        <ID>
+          <String>Cube_SL Vehicle Prices DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Role</Type>
+        <TimeStamp>tvbDSq00buuLhKj40+nrreAi2Kw=5/17/2022 9:51:25 PM5/17/2022 6:16:02 PM</TimeStamp>
+        <ID>
+          <String>Role</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>pQGsT3OaGQvMO3jlVPSJ/Bfvg4E=5/17/2022 9:51:25 PM5/17/2022 8:41:20 AM</TimeStamp>
+      <ID>
+        <String>SLVehiclePrices_SSAS</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2022-05-17T16:26:46.73Z</LastDeployed>
+</DeploymentSnapshot>

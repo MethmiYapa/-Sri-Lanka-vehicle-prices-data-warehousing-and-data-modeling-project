@@ -1,0 +1,1059 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/16/2022 1:39:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-5ICRANC"
+  DTS:CreatorName="DESKTOP-5ICRANC\methm"
+  DTS:DTSID="{B19BE7DF-DF04-4537-986D-5BFF5B3835D4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Datawarehousing update"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{0E67CA99-49C3-4FDD-AE8B-A70B64B6129A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-5ICRANC\SQLEXPRESS.SLVehiclePrices_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{72B6044D-EF3A-4BD1-B08B-B8BB0CDF215A}"
+      DTS:ObjectName="DESKTOP-5ICRANC\SQLEXPRESS.SLVehiclePrices_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-5ICRANC\SQLEXPRESS;Initial Catalog=SLVehiclePrices_Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract accm_txn_complete_time"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D8C2BDA6-3F15-47EB-95C7-F9D8C5D306DC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract accm_txn_complete_time"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract accm_txn_complete_time\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">exec dbo.UpdateCompleteTimes ?, ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{A42CED8E-AF34-4436-BBA0-27D484C88E68}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-5ICRANC_SQLEXPRESS.SLVehiclePrices_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].Columns[case_id]"
+                      cachedDataType="i4"
+                      cachedName="case_id"
+                      externalMetadataColumnId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@case_id]"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[case_id]" />
+                    <inputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].Columns[accm_txn_complete_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="accm_txn_complete_time"
+                      externalMetadataColumnId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@accm_txn_complete_time]"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@case_id]"
+                      dataType="i4"
+                      name="@case_id">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="@accm_txn_complete_time">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract accm_txn_complete_time\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[accm_txn_complete_time staging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-5ICRANC\SQLEXPRESS.SLVehiclePrices_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-5ICRANC\SQLEXPRESS.SLVehiclePrices_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[case_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[case_id]"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[case_id]"
+                      name="case_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[case_id]"
+                      dataType="i4"
+                      name="case_id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[case_id]"
+                      dataType="i4"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[case_id]"
+                      name="case_id" />
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract accm_txn_complete_time.Paths[OLE DB Source Output]"
+              endId="Package\Extract accm_txn_complete_time\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract accm_txn_complete_time\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\txn_process_time_hours"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EBDE0361-1D83-4D7C-984E-BD126A02654F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="txn_process_time_hours"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\txn_process_time_hours\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.FactVehicle SET txn_process_time_hours = DATEDIFF(hour, accm_txn_create_time, accm_txn_complete_time);</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\txn_process_time_hours\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{A42CED8E-AF34-4436-BBA0-27D484C88E68}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-5ICRANC_SQLEXPRESS.SLVehiclePrices_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\txn_process_time_hours\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactVehicle]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\txn_process_time_hours\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{A42CED8E-AF34-4436-BBA0-27D484C88E68}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-5ICRANC_SQLEXPRESS.SLVehiclePrices_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[case_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[case_id]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[case_id]"
+                      name="case_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[BuyerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BuyerKey]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[BuyerKey]"
+                      name="BuyerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModelKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModelKey]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModelKey]"
+                      name="ModelKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[SellerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SellerKey]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[SellerKey]"
+                      name="SellerKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[TitleKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TitleKey]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[TitleKey]"
+                      name="TitleKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Vehicle_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Vehicle_id]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Vehicle_id]"
+                      name="Vehicle_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Brand]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Brand]"
+                      name="Brand"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Condition]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Condition]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Condition]"
+                      name="Condition"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Body]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Body]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Body]"
+                      name="Body"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Edition]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Edition]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Edition]"
+                      name="Edition"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Capacity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Capacity]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Capacity]"
+                      name="Capacity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Mileage]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Mileage]"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[Mileage]"
+                      name="Mileage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[V_DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[V_DateKey]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[V_DateKey]"
+                      name="V_DateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      name="InsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[case_id]"
+                      dataType="i4"
+                      name="case_id" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BuyerKey]"
+                      dataType="i4"
+                      name="BuyerKey" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModelKey]"
+                      dataType="i4"
+                      name="ModelKey" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SellerKey]"
+                      dataType="i4"
+                      name="SellerKey" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TitleKey]"
+                      dataType="i4"
+                      name="TitleKey" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Vehicle_id]"
+                      dataType="i4"
+                      name="Vehicle_id" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Brand]"
+                      dataType="wstr"
+                      length="50"
+                      name="Brand" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Condition]"
+                      dataType="wstr"
+                      length="50"
+                      name="Condition" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Body]"
+                      dataType="wstr"
+                      length="50"
+                      name="Body" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Edition]"
+                      dataType="wstr"
+                      length="50"
+                      name="Edition" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      dataType="wstr"
+                      length="50"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Capacity]"
+                      dataType="wstr"
+                      length="50"
+                      name="Capacity" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Mileage]"
+                      dataType="wstr"
+                      length="50"
+                      name="Mileage" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[V_DateKey]"
+                      dataType="i4"
+                      name="V_DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_create_time" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      name="accm_txn_complete_time" />
+                    <externalMetadataColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[txn_process_time_hours]"
+                      dataType="i4"
+                      name="txn_process_time_hours" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[case_id]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[case_id]"
+                      name="case_id" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BuyerKey]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BuyerKey]"
+                      name="BuyerKey" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModelKey]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModelKey]"
+                      name="ModelKey" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SellerKey]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SellerKey]"
+                      name="SellerKey" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TitleKey]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TitleKey]"
+                      name="TitleKey" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Vehicle_id]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Vehicle_id]"
+                      name="Vehicle_id" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Brand]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Brand]"
+                      name="Brand" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Condition]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Condition]"
+                      name="Condition" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Body]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Body]"
+                      name="Body" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Edition]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Edition]"
+                      name="Edition" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Capacity]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Capacity]"
+                      name="Capacity" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Mileage]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Mileage]"
+                      name="Mileage" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[V_DateKey]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[V_DateKey]"
+                      name="V_DateKey" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      name="InsertDate" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_create_time]"
+                      name="accm_txn_create_time" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[accm_txn_complete_time]"
+                      name="accm_txn_complete_time" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[txn_process_time_hours]"
+                      name="txn_process_time_hours" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\txn_process_time_hours.Paths[OLE DB Source Output]"
+              endId="Package\txn_process_time_hours\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="OLE DB Source Output"
+              startId="Package\txn_process_time_hours\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4726AF15-4687-4D97-AE05-BD62FAD40886}"
+      DTS:From="Package\Extract accm_txn_complete_time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\txn_process_time_hours" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\Extract accm_txn_complete_time"
+          TopLeft="156.249997671694,35.7499993607402" />
+        <NodeLayout
+          Size="194.666666666667,42.6666666666667"
+          Id="Package\txn_process_time_hours"
+          TopLeft="322.499995194376,107.899998070598" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="274.249997671694,78.4166660274069">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145.583330856015,29.4833320431911"
+              Start="0,0"
+              End="145.583330856015,21.9833320431911">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.7416660215956" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.7416660215956"
+                    Point2="0,14.7416660215956"
+                    Point3="4,14.7416660215956" />
+                  <mssgle:LineSegment
+                    End="141.583330856015,14.7416660215956" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141.583330856015,14.7416660215956"
+                    Point2="145.583330856015,14.7416660215956"
+                    Point3="145.583330856015,18.7416660215956" />
+                  <mssgle:LineSegment
+                    End="145.583330856015,21.9833320431911" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract accm_txn_complete_time">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Extract accm_txn_complete_time\OLE DB Source"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Extract accm_txn_complete_time\OLE DB Command"
+          TopLeft="269,145" />
+        <EdgeLayout
+          Id="Package\Extract accm_txn_complete_time.Paths[OLE DB Source Output]"
+          TopLeft="80.8333333333333,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="271.5,96.8333333333333"
+              Start="0,0"
+              End="271.5,89.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.4166666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.4166666666667"
+                    Point2="0,48.4166666666667"
+                    Point3="4,48.4166666666667" />
+                  <mssgle:LineSegment
+                    End="267.5,48.4166666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="267.5,48.4166666666667"
+                    Point2="271.5,48.4166666666667"
+                    Point3="271.5,52.4166666666667" />
+                  <mssgle:LineSegment
+                    End="271.5,89.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract accm_txn_complete_time\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\txn_process_time_hours">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\txn_process_time_hours\OLE DB Source"
+          TopLeft="295,94" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\txn_process_time_hours\OLE DB Command"
+          TopLeft="542,141" />
+        <EdgeLayout
+          Id="Package\txn_process_time_hours.Paths[OLE DB Source Output]"
+          TopLeft="445.666666666667,115.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96.3333333333334,47"
+              Start="0,0"
+              End="88.8333333333334,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.1666666666667,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.1666666666667,0"
+                    Point2="48.1666666666667,0"
+                    Point3="48.1666666666667,4" />
+                  <mssgle:LineSegment
+                    End="48.1666666666667,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.1666666666667,43"
+                    Point2="48.1666666666667,47"
+                    Point3="52.1666666666667,47" />
+                  <mssgle:LineSegment
+                    End="88.8333333333334,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\txn_process_time_hours\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

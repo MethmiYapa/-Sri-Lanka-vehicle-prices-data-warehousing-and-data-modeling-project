@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1927
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "SLvehiclePrices.SSRS", "SLvehiclePrices.SSRS\SLvehiclePrices.SSRS.rptproj", "{16611F11-0F51-4032-AAB6-4F250F96A7BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.Debug|Default.ActiveCfg = Debug
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.Debug|Default.Build.0 = Debug
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.Debug|Default.Deploy.0 = Debug
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.DebugLocal|Default.Build.0 = DebugLocal
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.Release|Default.ActiveCfg = Release
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.Release|Default.Build.0 = Release
+		{16611F11-0F51-4032-AAB6-4F250F96A7BD}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B391C950-77EA-4C98-9E59-5A32B900C3AF}
+	EndGlobalSection
+EndGlobal
